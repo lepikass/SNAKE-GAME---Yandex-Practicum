@@ -44,17 +44,35 @@ clock = pygame.time.Clock()
 
 # Тут опишите все классы игры.
 class GameObject:
+    """
+    Базовый класс для игровых объектов.
+    """
+
     def __init__(self, position=None, body_color=None):
+        """
+        Инициализация игрового объекта.
+
+        Параметры:
+            position (tuple): начальная позиция объекта на поле.
+            body_color (tuple): цвет объекта.
+        """
         if position is None:
             position = (SCREEN_HEIGHT // 2, SCREEN_WIDTH // 2)
         self.position = position
         self.body_color = body_color
 
     def draw(self):
+        """
+        Отрисовка объекта на игровом поле.
+        """
         pass
 
 
 class Apple(GameObject):
+    """
+    Класс для яблока в игре 'Змейка'.
+    """
+
     def __init__(self):
         super().__init__()
         self.body_color = APPLE_COLOR
@@ -62,11 +80,16 @@ class Apple(GameObject):
 
     # рандомное место для яблока
     def randomize_position(self):
+        """
+        Расположение яблока в случайной позиции на игровом поле.
+        """
         self.position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                          randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
 
-    # Рисуем яблоко и листик
     def draw(self):
+        """
+        Отрисовка яблока и листика на игровом поле.
+        """
         apple_rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, apple_rect)
         pygame.draw.rect(screen, BORDER_COLOR, apple_rect, 1)
@@ -141,6 +164,9 @@ class Snake(GameObject):
 
 
 def handle_keys(game_object):
+    """
+    Обрабатывает нажатия клавиш для управления направлением движения змейки.
+    """
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -157,6 +183,9 @@ def handle_keys(game_object):
 
 
 def main():
+    """
+    Основная функция, инициализирующая игру и управляющая игровым циклом.
+    """
     # Инициализация PyGame:
     pygame.init()
     # Тут нужно создать экземпляры классов.
