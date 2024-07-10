@@ -68,7 +68,7 @@ class Apple(GameObject):
     def randomize_position(self):
         """Определяет случайную позицию для яблока на игровом поле."""
         self.position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
-                        randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
+                         randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
 
     def draw(self):
         """Отрисовывает яблоко и лист на экране."""
