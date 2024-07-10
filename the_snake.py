@@ -89,6 +89,7 @@ class Snake(GameObject):
                  next_direction=None, body_color=SNAKE_COLOR):
         self.length = length
         self.positions = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
+        self.position = self.positions[0]
         self.direction = direction
         self.next_direction = next_direction
         self.body_color = body_color
