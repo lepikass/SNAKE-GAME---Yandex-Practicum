@@ -54,8 +54,7 @@ class GameObject:
 
     def draw(self):
         """Отрисовывает объекты на экране."""
-        
-        pass
+    pass
 
 
 class Apple(GameObject):
@@ -67,9 +66,9 @@ class Apple(GameObject):
         self.randomize_position()
 
     def randomize_position(self):
-        """Определяет случайную позицию для яблока на игровом поле."""    
+        """Определяет случайную позицию для яблока на игровом поле."""
         self.position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
-                         randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
+                        randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
 
     def draw(self):
         """Отрисовывает яблоко и лист на экране."""
@@ -85,6 +84,7 @@ class Apple(GameObject):
 
 class Snake(GameObject):
     """Класс, представляющий змейку в игре."""
+
     def __init__(self, length=1, direction=RIGHT,
                  next_direction=None, body_color=SNAKE_COLOR):
         self.length = length
@@ -94,7 +94,7 @@ class Snake(GameObject):
         self.body_color = body_color
 
     def update_direction(self):
-        """Обновляет направление движения змейки."""    
+        """Обновляет направление движения змейки."""
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
@@ -123,7 +123,7 @@ class Snake(GameObject):
             self.positions.pop()
 
     def get_head_position(self):
-        """Возвращает текущую позицию головы змейки."""    
+        """Возвращает текущую позицию головы змейки."""
         return self.positions[0]
 
     def reset(self):
@@ -136,7 +136,7 @@ class Snake(GameObject):
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
 
     def draw(self):
-        """Отрисовывает змейку на экране."""    
+        """Отрисовывает змейку на экране."""
         for position in self.positions[:-1]:
             rect = (pygame.Rect(position, (GRID_SIZE, GRID_SIZE)))
             pygame.draw.rect(screen, self.body_color, rect)
@@ -153,7 +153,7 @@ class Snake(GameObject):
 
 
 def handle_keys(game_object):
-    """Обрабатывает нажатия клавиш для управления направлением движения змейки."""
+    """Обрабатывает нажатия клавиш ."""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
