@@ -45,7 +45,7 @@ pygame.display.set_caption('Змейка')
 clock = pygame.time.Clock()
 
 
-def draw_rect(screen, position, color, 
+def draw_rect(screen, position, color,
               border_color=BOARD_BACKGROUND_COLOR, border=1):
     """Отрисовывает прямоугольник с границей на экране."""
     rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
