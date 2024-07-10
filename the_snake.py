@@ -58,6 +58,12 @@ class GameObject:
         """Отрисовывает объекты на экране."""
         raise NotImplementedError
 
+    def draw_rect(self, position, color, border_color=BORDER_COLOR):
+        """Отрисовывает прямоугольник с границей на экране."""
+        rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
+        pygame.draw.rect(screen, color, rect)
+        pygame.draw.rect(screen, border_color, rect, 1)    
+
 
 class Apple(GameObject):
     """Класс для яблока в игре 'Змейка'."""
@@ -80,10 +86,8 @@ class Apple(GameObject):
 
     def draw(self):
         """Отрисовывает яблоко и лист на экране."""
-        apple_rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
-        pygame.draw.rect(screen, self.body_color, apple_rect)
-        pygame.draw.rect(screen, BORDER_COLOR, apple_rect, 1)
-
+        self.draw_rect(self.position, self.body_color)
+        # Отрисовка листа
         leaf_position = (self.position[0] + 10, self.position[1] + 1)
         leaf_size = (GRID_SIZE // 4, GRID_SIZE // 2)
         leaf_rect = pygame.Rect(leaf_position, leaf_size)
@@ -147,14 +151,10 @@ class Snake(GameObject):
     def draw(self):
         """Отрисовывает змейку на экране."""
         for position in self.positions[:-1]:
-            rect = (pygame.Rect(position, (GRID_SIZE, GRID_SIZE)))
-            pygame.draw.rect(screen, self.body_color, rect)
-            pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
+            self.draw_rect(position, self.body_color)
 
         # Отрисовка головы змейки
-        head_rect = pygame.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
-        pygame.draw.rect(screen, self.body_color, head_rect)
-        pygame.draw.rect(screen, BORDER_COLOR, head_rect, 1)
+        self.draw_rect(self.positions[0], self.body_color)
 
         if self.last:
             last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
