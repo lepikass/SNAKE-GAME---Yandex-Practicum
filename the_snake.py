@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 
 import pygame
 
@@ -58,6 +58,7 @@ class GameObject:
 
 class Apple(GameObject):
     """Класс для яблока в игре 'Змейка'."""
+
     def __init__(self):
         super().__init__()
         self.body_color = APPLE_COLOR
@@ -84,7 +85,6 @@ class Snake(GameObject):
                  next_direction=None, body_color=SNAKE_COLOR):
         self.length = length
         self.positions = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
-        self.position = self.positions[0]
         self.direction = direction
         self.next_direction = next_direction
         self.body_color = body_color
@@ -122,9 +122,10 @@ class Snake(GameObject):
     def reset(self):
         screen.fill(BOARD_BACKGROUND_COLOR)
         self.length = 1
-        self.position = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
+        self.positions = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
         self.direction = RIGHT
         self.next_direction = None
+        self.direction = choice([UP, DOWN, LEFT, RIGHT])
 
     def draw(self):
         for position in self.positions[:-1]:
