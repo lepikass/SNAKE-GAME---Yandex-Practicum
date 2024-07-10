@@ -59,10 +59,10 @@ class GameObject:
         raise NotImplementedError
 
     def draw_rect(self, position, color, border_color=BORDER_COLOR):
-        """Отрисовывает прямоугольник с границей на экране."""
+        """Отрисовывает прямоугольник."""
         rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, color, rect)
-        pygame.draw.rect(screen, border_color, rect, 1)    
+        pygame.draw.rect(screen, border_color, rect, 1)
 
 
 class Apple(GameObject):
