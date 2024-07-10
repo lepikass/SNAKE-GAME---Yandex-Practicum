@@ -54,6 +54,7 @@ class GameObject:
 
     def draw(self):
         """Отрисовывает объекты на экране."""
+        
         pass
 
 
