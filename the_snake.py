@@ -9,7 +9,7 @@ GRID_WIDTH = SCREEN_WIDTH // GRID_SIZE
 GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
 
 # Центр экрана
-center_of_screen = (SCREEN_HEIGHT // 2, SCREEN_WIDTH // 2)
+CENTER_OF_SCREEN = (SCREEN_HEIGHT // 2, SCREEN_WIDTH // 2)
 
 # Направления движения:
 UP = (0, -1)
@@ -50,7 +50,7 @@ class GameObject:
 
     def __init__(self, position=None, body_color=None):
         if position is None:
-            position = center_of_screen
+            position = CENTER_OF_SCREEN
         self.position = position
         self.body_color = body_color
 
@@ -100,7 +100,7 @@ class Snake(GameObject):
     def __init__(self, length=1, direction=RIGHT,
                  next_direction=None, body_color=SNAKE_COLOR):
         self.length = length
-        self.positions = [center_of_screen]
+        self.positions = [CENTER_OF_SCREEN]
         self.position = self.positions[0]
         self.direction = direction
         self.next_direction = next_direction
@@ -143,7 +143,7 @@ class Snake(GameObject):
         """Сбрасывает змейку в начальное состояние."""
         screen.fill(BOARD_BACKGROUND_COLOR)
         self.length = 1
-        self.positions = [center_of_screen]
+        self.positions = [CENTER_OF_SCREEN]
         self.direction = RIGHT
         self.next_direction = None
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
@@ -180,9 +180,7 @@ def handle_keys(game_object):
 
 def main():
     """Основная функция, инициализирующая игру и управляющая игровым циклом."""
-    # Инициализация PyGame:
     pygame.init()
-    # Тут нужно создать экземпляры классов.
     snake = Snake()
     apple = Apple(snake.positions)
     while True:
